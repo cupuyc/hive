@@ -1,6 +1,10 @@
 #!/bin/sh
 set -e
 
+sleep 10s
+
+echo "Hello world!"
+
 # Simply query the 5th block and check that it's correct
 reply=`curl -s -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["0x05", false],"id":0}' "$HIVE_CLIENT_IP:8545"`
 
