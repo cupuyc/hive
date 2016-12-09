@@ -74,6 +74,12 @@ FLAGS="$FLAGS -DgenesisFile=/genesis.json"
 FLAGS="$FLAGS -Dserver.port=8545"
 FLAGS="$FLAGS -Ddatabase.dir=database"
 FLAGS="$FLAGS -Dlogs.keepStdOut=true"
+FLAGS="$FLAGS -Dpeer.bind.ip=0.0.0.0"
+FLAGS="$FLAGS -Dpeer.discovery.external.ip=0.0.0.0"
+FLAGS="$FLAGS -Dpeer.discovery.bind.ip=0.0.0.0"
+
+# Temporary
+FLAGS="$FLAGS -Dpeer.discovery.enabled=false"
 
 # Load the test chain if present
 if [ -f /chain.rlp ]; then
@@ -108,8 +114,10 @@ if [ "$HIVE_MINER_EXTRA" != "" ]; then
 	FLAGS="$FLAGS -Dmine.extraData=$HIVE_MINER_EXTRA"
 fi
 
-
 # Run the go-ethereum implementation with the requested flags
+echo "Parameters $FLAGS"
 echo "Running Harmony..."
 cd /ethereum-harmony
 ./gradlew bootRun $FLAGS
+#./gradlew bootRun $FLAGS > out.log &
+#sleep 5s
