@@ -1,0 +1,13 @@
+sudo: required
+
+language: go
+
+go:
+  - 1.6
+
+services:
+  - docker
+
+script:
+  - go build && go install
+  - hive --client=ethereumj:master --docker-noshell=true --smoke=true --test=.

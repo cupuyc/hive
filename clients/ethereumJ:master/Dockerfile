@@ -80,7 +80,7 @@ RUN \
 
 
 # Make sure bash and jq is available for easier wrapper implementation
-RUN apk add --update bash
+RUN apk add --update bash jq
 
 # Inject the startup script
 ADD harmony.sh /harmony.sh
